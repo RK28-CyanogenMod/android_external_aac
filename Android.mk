@@ -53,6 +53,11 @@ LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/libSBRdec/include \
         $(LOCAL_PATH)/libSBRenc/include
 
+# ARMv5 Thumb-1 has no SMULL; retain FDK's fixed-point assembly in ARM mode.
+ifeq ($(TARGET_ARCH_VARIANT),armv5te)
+LOCAL_ARM_MODE := arm
+endif
+
 LOCAL_MODULE:= libFraunhoferAAC
 
 include $(BUILD_STATIC_LIBRARY)
